@@ -49,7 +49,50 @@
     </style>
 </head>
 <body>
-    <h1 class="Feedback">Feedback!</h1>
+<?php
+
+    //$userna = $_POST['username'];
+  //  $sec= $_POST['section'];
+  //  $sub= $_POST['Subjec'];
+
+
+ $servername = "localhost";
+ $username = "root";
+ $describe = "";
+ $database = "facultyfeedback";
+  
+ $conn = mysqli_connect($servername, $username, $describe, $database);
+ // Die if connection was not successful
+ if (!$conn){
+     die("Sorry we failed to connect: ". mysqli_connect_error());
+     
+ }
+ else{ 
+
+//$id= $_GET['subjects'];
+$s_no= $_GET['index'];
+$sql2="SELECT * FROM `mock_data__1_` WHERE sno= '$s_no' ";
+
+     $result2 = mysqli_query($conn, $sql2);
+     $num2 = mysqli_num_rows($result2);
+   echo"$num2" ; 
+     
+
+     $noresult=true;
+     
+      while($row=mysqli_fetch_assoc($result2)){
+         $noresult=false; 
+        echo "
+     
+     <div id='container'>
+         <h1>".$row['first_name']."</h1>
+     </div>   
+         ";
+      }
+    }
+
+
+  ?>
     <h1 class="rate">RATE THE QUESTIONS</h1>
     <form action="#">
         <p>Does the faculty clarify your doubts in class?</p>
