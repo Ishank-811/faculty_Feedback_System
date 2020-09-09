@@ -68,22 +68,11 @@ h1
     color:#fff;
     font-size: 18px;
     border-radius: 20px;
+    margin-top:21px;
 }
 .loginbox input[type="submit"]:hover
 {
     cursor: pointer;
     background:#ffc107;
     color:#000;
-}
-.loginbox a
-{
-    text-decoration:none;
-    font-size:12px;
-    line-height: 20px;
-    color:darkgrey;
-}
-.loginbox a:hover
-{
-    color:#ffc107;
-
 }
