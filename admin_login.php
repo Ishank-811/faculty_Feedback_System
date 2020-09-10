@@ -1,9 +1,12 @@
+<?php
+    require 'register.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Faculty Login </title>
+    <title>Admin Login </title>
     <!-- <link rel="stylesheet" href="/admin.css"> -->
     <style>
     body
@@ -91,13 +94,15 @@
 <body>
     <div class="loginbox">
         <img src="img/avatar.png" class="avatar">
-        <h1>Faculty Login </h1>
-        <form>
+        <!-- <p class="error"><?php echo $error;?></p><p class="success"><?php echo $success;?></p> -->
+        <h1>Admin Login </h1>
+        <form method="post" action="admin_login.php">
+            <?= $error ; ?>
             <p>Username</p>
-            <input type="text" name="" placeholder="Enter Username">
+            <input type="text" name="username" placeholder="Enter Username">
             <p>Password</p>
-            <input type="password" name="" placeholder="Enter Password">
-            <input type="submit" name="" value="Login">
+            <input type="password" name="password" placeholder="Enter Password">
+            <input type="submit" name="submit" value="Login">
             
         </form>
     </div>
