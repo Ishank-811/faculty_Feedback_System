@@ -102,55 +102,54 @@
 
     </style>
 </head>
-<body> 
-<?php
- if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-    $userna = $_POST['username'];
-    $sec= $_POST['section'];
-
- $servername = "localhost";
- $username = "root";
- $describe = "";
- $database = "facultyfeedback";
+<body>
+<?php 
+session_start();
+if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']=true){
   
- $conn = mysqli_connect($servername, $username, $describe, $database);
- // Die if connection was not successful
- if (!$conn){
-     die("Sorry we failed to connect: ". mysqli_connect_error());
- }
- else{ 
-
-//$id= $_GET['subjects'];
-$sql="SELECT * FROM `mock_data__1_` WHERE Section ='$sec'";
-//$sql2="SELECT * FROM `subjectsList` WHERE sub = '$sec'";
-
-     $result = mysqli_query($conn, $sql);
-    // $result2 = mysqli_query($conn, $sql2);
-     $num = mysqli_num_rows($result);
-   
-     
-
-     $noresult=true;
-      echo "$num"; 
-      while($row=mysqli_fetch_assoc($result)){
-        $id=$row['sno']; 
-          $sub=$row['Subjec']; 
-         $noresult=false; 
-        echo "
-     
-     <div id='container'>
-         <button id='button1'><a style='color:black;' href='./index.php?index=".$id." '>".$row['Subjec']."</button>
-     </div>   
-         ";
-      }
-    }
-}
+    echo'
  
-  ?>
+    <h1>welcome '.$_SESSION['naam'].'</h1>
+';}
+else{
+ echo'
+<h1>no username</h1>;
+        ';
+    }
+
+
+?>
+<?php
+
+
+$sec= $_GET['subjects'];
+
+$servername = "localhost";
+$username = "root";
+$describe = "";
+$database = "facultyfeedback";
+// // Create a connection
+$conn = mysqli_connect($servername, $username, $describe, $database);
+
+ 
+  $sql="SELECT * FROM `mock_data__1__1` WHERE id= $sec";
+  $result = mysqli_query($conn, $sql);
+    
+//  $num = mysqli_num_rows($result);
+while($row=mysqli_fetch_assoc($result)){
+    $sno=$row{'sno'}; 
+echo '
+<div id="container">
+    <button id="button1"><a style="color:black;" href="./index.php?index='.$sno.' ">'.$row{'subjec'}.'</button>
+</div>';
+}
+
+?>
 
 
 
-
+     
+  
 
 </body>
 </html>
