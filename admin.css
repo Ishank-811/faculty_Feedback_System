@@ -3,10 +3,9 @@ body
     margin: 0;
     padding:0;
     background-image: url(img/akgec.png);
-    background-position: center;
-    background-size:cover;
-    background-origin: content-box;
-    background-attachment: fixed;
+    background-size: cover;
+    /* background-position: center; */
+    background-repeat: no-repeat;
 }
 .loginbox
 {
