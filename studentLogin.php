@@ -11,7 +11,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <style>
-    body {
+    body
+	{
 		font-family: 'Varela Round', sans-serif;
         background-image: url(img/akgec.png);
 		background-repeat: none;
@@ -20,7 +21,8 @@
 		background-origin: content-box;
 		background-attachment: fixed;
 	}
-	.modal-login {
+	.modal-login
+	{
 		
 		color: #636363;
 		width: 350px;
@@ -28,12 +30,14 @@
         margin-top: 100px;
         margin-left:700px;
 	}
-	.modal-login .modal-content {
+	.modal-login .modal-content 
+	{
 		padding: 20px;
 		border-radius: 5px;
 		border: none;
 	}
-	.modal-login .modal-header {
+	.modal-login .modal-header 
+	{
 		border-bottom: none;
 		position: relative;
 		justify-content: center;
@@ -42,43 +46,53 @@
 		text-align: center;
 		font-size: 26px;
 	}
-	.modal-login  .form-group {
+	.modal-login  .form-group 
+	{
 		position: relative;
 	}
-	.modal-login i {
+	.modal-login i 
+	{
 		position: absolute;
 		left: 13px;
 		top: 11px;
 		font-size: 18px;
 	}
-	.modal-login .form-control {
+	.modal-login .form-control 
+	{
 		padding-left: 40px;
 	}
-	.modal-login .form-control:focus {
+	.modal-login .form-control:focus 
+	{
 		border-color: #00ce81;
 	}
-	.modal-login .form-control, .modal-login .btn {
+	.modal-login .form-control, .modal-login .btn 
+	{
 		min-height: 40px;
 		border-radius: 3px; 
 	}
-	.modal-login .hint-text {
+	.modal-login .hint-text 
+	{
 		text-align: center;
 		padding-top: 10px;
 	}
-	.modal-login .close {
+	.modal-login .close 
+	{
         position: absolute;
 		top: -5px;
 		right: -5px;
 	}
-	.modal-login .btn {
+	.modal-login .btn 
+	{
 		background: #00ce81;
 		border: none;
 		line-height: normal;
 	}
-	.modal-login .btn:hover, .modal-login .btn:focus {
+	.modal-login .btn:hover, .modal-login .btn:focus 
+	{
 		background: #00bf78;
 	}
-	.modal-login .modal-footer {
+	.modal-login .modal-footer 
+	{
 		background: #ecf0f1;
 		border-color: #dee4e7;
 		text-align: center;
@@ -87,7 +101,8 @@
 		font-size: 13px;
 		justify-content: center;
 	}
-	.modal-login .modal-footer a {
+	.modal-login .modal-footer a 
+	{
 		color: #999;
 	}
 	.trigger-btn {
@@ -104,49 +119,50 @@
 //include "conn.php";
 $showlogin=false; 
 $showError=false; 
-if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-  $userna = $_POST['username'];
-  $sec= $_POST['section'];
+if ($_SERVER['REQUEST_METHOD'] == 'POST')
+{
+	$userna = $_POST['username'];
+	$sec= $_POST['section'];
  
- 
+	// Connecting to the Database
+	$servername = "localhost";
+	$username = "root";
+	$password = "";
+	$database = "facultyfeedback";
 
-// Connecting to the Database
-$servername = "localhost";
-$username = "root";
-$password = "";
-$database = "facultyfeedback";
+	//Create a connection
+	$conn = mysqli_connect($servername, $username, $password, $database);
+	//Die if connection was not successful
+	if (!$conn)
+	{
+		die("Sorry we failed to connect: ". mysqli_connect_error());
+		echo "die"; 
+	}
+	else
+	{ 
+		//Submit these to a database
+		// Sql query to be executed 
+		$sql = "SELECT * FROM  studentlogin where username='$userna' ";
+		$result = mysqli_query($conn, $sql);
+		$num = mysqli_num_rows($result);
+	
+	if ($num==1)
+	{
+		$showlogin = true;
+		$row = mysqli_fetch_assoc($result);
+		$ids=$row{"id"}; 
+		session_start();
+		$_SESSION['loggedin']=true;
+		$_SESSION['naam']=$userna;
+		$_SESSION['sno']=$row['sno'];
+		header("location:subjects.php?subjects=$sec");
+	}
 
-//Create a connection
-$conn = mysqli_connect($servername, $username, $password, $database);
-//Die if connection was not successful
-if (!$conn){
-	die("Sorry we failed to connect: ". mysqli_connect_error());
-	echo "die"; 
-}
-else{ 
-  //Submit these to a database
- // Sql query to be executed 
- 
- 
-    $sql = "SELECT * FROM  studentlogin where username='$userna' ";
-   $result = mysqli_query($conn, $sql);
-   $num = mysqli_num_rows($result);
- 
-   if ($num==1){
-       $showlogin = true;
-	$row = mysqli_fetch_assoc($result);
-	$ids=$row{"id"}; 
-       session_start();
-       $_SESSION['loggedin']=true;
-       $_SESSION['naam']=$userna;
-	   $_SESSION['sno']=$row['sno'];
-	   header("location:subjects.php?subjects=$sec");
-   }
-
-else{
-//   $showError = "Passwords do not match";
-  echo "password do not match"; 
-}
+	else
+	{
+		//   $showError = "Passwords do not match";
+		echo "password do not match"; 
+	}
 
 }
 }
