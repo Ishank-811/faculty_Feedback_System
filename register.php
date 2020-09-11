@@ -4,7 +4,7 @@ $error = '';
 if(isset($_POST["submit"]))
 {
     // validate username empty
-    if(isset($_POST['username']) && empty($_POST['username']))
+    if(isset($_POST['username']) && empty($_POST['username'])) //empty data in HTML.
     {
         $error .= "<div class='alert alert-danger text-center' role='alert'>
         Name is invalid, Please try again!</div>";
@@ -12,7 +12,7 @@ if(isset($_POST["submit"]))
     else
     {
         // validate
-        if(!preg_match("/^[a-zA-Z ]*$/", $_POST['username']))
+        if(!preg_match("/^[a-zA-Z ]*$/", $_POST['username'])) //returns whether a match was found in a string.
         {
             $error  .= "<div class='alert alert-success text-center' role='alert'>
             Name is valid.</div>";
@@ -27,7 +27,7 @@ if(isset($_POST["submit"]))
     else
     {
         // validate
-        if(!preg_match("/^[a-zA-Z ]*$/", $_POST['password']))
+        if(!preg_match("/^[a-zA-Z ]*$/", $_POST['password'])) //Matching Password!
         {
             $error  .= "<div class='alert alert-success text-center' role='alert'>
             Password is valid.</div>";
@@ -38,16 +38,11 @@ if(isset($_POST["submit"]))
     $password = $_POST["password"];
 
 
-    if(trim($username)!=""and trim($password)!= "")
+    if(trim($username)!=""and trim($password)!= "") //gives error if $username is empty only whitespace! 
     {
-        //Sanitizes whatever is entered
-        $username=stripcslashes($username);
-        $password=stripcslashes($password);
-        $username=strip_tags($_POST["username"]);
-        $password=strip_tags($_POST["password"]);
-
-
+        
         $username= mysqli_real_escape_string($conn,$username);
+        // mysqli_real_escape_string is used to escapes special ch. in a string for use in sql query!
         $password= mysqli_real_escape_string($conn,$password);
 
 

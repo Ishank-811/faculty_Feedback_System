@@ -40,13 +40,7 @@ if(isset($_POST["submit"]))
 
     if(trim($username)!=""and trim($password)!= "")
     {
-        //Sanitizes whatever is entered
-        $username=stripcslashes($username);
-        $password=stripcslashes($password);
-        $username=strip_tags($_POST["username"]);
-        $password=strip_tags($_POST["password"]);
-
-
+        
         $username= mysqli_real_escape_string($conn,$username);
         $password= mysqli_real_escape_string($conn,$password);
 
