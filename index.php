@@ -7,10 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Feedback!</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <style>
         
         body
@@ -37,11 +37,11 @@
             text-align: center;
             font-weight: 200;
             margin:60px;
-            font-family: cursive;
+            font-family: 'Kumbh Sans', sans-serif;
             color: black;
             font-size: 19px;
             font-weight: 800;
-            margin-top: -17px;
+            margin-top: -30px;
         }
         button
         {
@@ -73,55 +73,60 @@
 
 <?php
 
-    $servername = "localhost";
-    $username = "root";
-    $describe = "";
-    $database = "facultyfeedback";
-    // // Create a connection
-    $conn = mysqli_connect($servername, $username, $describe, $database);
 
-    $s_no= $_GET['index'];
-    $sql="SELECT * FROM `mock_data__1__1` WHERE sno = $s_no";
-    $result = mysqli_query($conn, $sql);
-        
-    //  $num = mysqli_num_rows($result);
-    while($row=mysqli_fetch_assoc($result))
-    {
-        $sno=$row{'sno'};
-        $name=$row{'first_name'} ;
-        echo '
+$servername = "localhost";
+$username = "root";
+$describe = "";
+$database = "facultyfeedback";
+// // Create a connection
+$conn = mysqli_connect($servername, $username, $describe, $database);
 
-        <h1 style="margin-top:10px;">'.$row{'first_name'}.' '.$row{'last_name'}.'</h1>';
+$s_no= $_GET['index'];
+  $sql="SELECT * FROM `mock_data__1__1` WHERE sno = $s_no";
+  $result = mysqli_query($conn, $sql);
+    
+//  $num = mysqli_num_rows($result);
+while($row=mysqli_fetch_assoc($result)){
+    $sno=$row{'sno'};
+    $name=$row{'first_name'} ;
+echo '
+    <h1 style="margin-top:10px;">'.$row{'first_name'}.' '.$row{'last_name'}.'</h1>';
 
-    }
+}
 
-    session_start();
-    if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']=true)
-    {
 
-        $method= $_SERVER['REQUEST_METHOD'];
 
-        if($method=='POST')
-        {
-            $rate1= $_POST['rate1'];
-            $rate2= $_POST['rate2'];
-            $rate3= $_POST['rate3'];
-            $rate4= $_POST['rate4'];
-            $rate5= $_POST['rate5'];
-            $comment= $_POST['comment'];
-            
-            
-            $sql3="INSERT INTO `teachers_rating` (`sno`, `student_number`, `teacher`, `rate1`, `rate2`, `rate3`, `rate4`, `rate5`, `comment`, `time`) VALUES (NULL, '".$_SESSION['naam']."', ' $name', '$rate1', '$rate2', '$rate3', '$rate4', '$rate5', '$comment', current_timestamp());";
-            $result3 = mysqli_query($conn , $sql3);
+session_start();
+if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']=true){ 
+  
 
-        }
-        else
-        {
-            echo ""; 
-        }
-    }
+
+
+
+$method= $_SERVER['REQUEST_METHOD'];
+
+if($method=='POST'){
+  $rate1= $_POST['rate1'];
+  $rate2= $_POST['rate2'];
+  $rate3= $_POST['rate3'];
+  $rate4= $_POST['rate4'];
+  $rate5= $_POST['rate5'];
+   $comment= $_POST['comment'];
+   
+   
+$sql3="INSERT INTO `teachers_rating` (`sno`, `student_number`, `teacher`, `rate1`, `rate2`, `rate3`, `rate4`, `rate5`, `comment`, `time`) VALUES (NULL, '".$_SESSION['naam']."', ' $name', '$rate1', '$rate2', '$rate3', '$rate4', '$rate5', '$comment', current_timestamp());";
+$result3 = mysqli_query($conn , $sql3);
+header("location:subjects.php");
+}
+else{
+echo ""; 
+}
+}
 
 ?>
+
+
+
     <?php 
     echo '
    
@@ -172,6 +177,9 @@
         <button type="submit" class="btn btn-primary">Add</button>
     </form>
     '; 
-    ?>      
+    ?>    
+  
+
+    
 </body>
 </html>

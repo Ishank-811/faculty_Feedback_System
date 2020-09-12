@@ -8,21 +8,20 @@
 <link href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 <style>
-    body
-	{
+    body {
 		font-family: 'Varela Round', sans-serif;
-        background-image: url(img/akgec.png);
+        background-image:url(img/akgec.png);
 		background-repeat: none;
 		background-position: center;
 		background-size:cover;
 		background-origin: content-box;
 		background-attachment: fixed;
+	
+	
 	}
-	.modal-login
-	{
+	.modal-login {
 		
 		color: #636363;
 		width: 350px;
@@ -119,72 +118,77 @@
 //include "conn.php";
 $showlogin=false; 
 $showError=false; 
-if ($_SERVER['REQUEST_METHOD'] == 'POST')
-{
-	$userna = $_POST['username'];
-	$sec= $_POST['section'];
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+  $userna = $_POST['username'];
+  $sec= $_POST['section'];
  
-	// Connecting to the Database
-	$servername = "localhost";
-	$username = "root";
-	$password = "";
-	$database = "facultyfeedback";
+ 
 
-	//Create a connection
-	$conn = mysqli_connect($servername, $username, $password, $database);
-	//Die if connection was not successful
-	if (!$conn)
-	{
-		die("Sorry we failed to connect: ". mysqli_connect_error());
-		echo "die"; 
-	}
-	else
-	{ 
-		//Submit these to a database
-		// Sql query to be executed 
-		$sql = "SELECT * FROM  studentlogin where username='$userna' ";
-		$result = mysqli_query($conn, $sql);
-		$num = mysqli_num_rows($result);
-	
-	if ($num==1)
-	{
-		$showlogin = true;
-		$row = mysqli_fetch_assoc($result);
-		$ids=$row{"id"}; 
-		session_start();
-		$_SESSION['loggedin']=true;
-		$_SESSION['naam']=$userna;
-		$_SESSION['sno']=$row['sno'];
-		header("location:subjects.php?subjects=$sec");
-	}
+// Connecting to the Database
+$servername = "localhost";
+$username = "root";
+$password = "";
+$database = "facultyfeedback";
 
-	else
-	{
-		//   $showError = "Passwords do not match";
-		echo "password do not match"; 
-	}
+//Create a connection
+$conn = mysqli_connect($servername, $username, $password, $database);
+//Die if connection was not successful
+if (!$conn){
+	die("Sorry we failed to connect: ". mysqli_connect_error());
+	echo "die"; 
+}
+else{ 
+  //Submit these to a database
+ // Sql query to be executed 
+ 
+ 
+	$sql = "SELECT * FROM  studentlogin where username='$userna' and status=0 ";
+
+   $result = mysqli_query($conn, $sql);
+   $num = mysqli_num_rows($result);
+ 
+   if ($num==1){
+       $showlogin = true;
+	$row = mysqli_fetch_assoc($result);
+	$ids=$row{"id"}; 
+	   session_start();
+	   $_SESSION['section']=$sec; 
+       $_SESSION['loggedin']=true;
+       $_SESSION['naam']=$userna;
+	   $_SESSION['sno']=$row['sno'];
+	   header("location:subjects.php");
+   }
+
+else{
+	$showError=true; 
+	$showError="invalid credentials"; 
+ 
+}
+
+
 
 }
 }
 
 ?>
 <?php
-//  if($showlogin){
-//   echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
-//     <strong>Success!</strong> You have been logged in 
-//     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-//     <span aria-hidden="true">×</span>
-//   </button>
-// </div>';
-// }
-// if($showError){
-//   echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-//   <strong>Error!</strong>'.$showError.'
-//   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-//   <span aria-hidden="true">×</span>
-// </button>
-// </div>';
-// }
+ if($showlogin){
+  echo '<div class="alert alert-success " role="alert">
+    <strong>Success!</strong> You have been logged in 
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">×</span>
+  </button>
+</div>';
+}
+if($showError){
+  echo '<div class="alert alert-danger " role="alert">
+  <strong>Error! </strong>'.$showError.'
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+  <span aria-hidden="true">×</span>
+</button>
+</div>';
+}
 ?>
 
 
@@ -266,6 +270,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 			
 		</div>
 	</div> 
-    
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
 </html>
