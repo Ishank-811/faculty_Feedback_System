@@ -1,3 +1,9 @@
+<?php
+session_start(); 
+$sec=  $_SESSION['section']; 
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -104,7 +110,7 @@
 </head>
 <body>
 <?php 
-session_start();
+
 if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']=true){
   
     echo'
@@ -122,7 +128,7 @@ else{
 <?php
 
 
-$sec= $_GET['subjects'];
+// $sec= $_GET['subject'];
 
 $servername = "localhost";
 $username = "root";

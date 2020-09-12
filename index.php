@@ -73,6 +73,7 @@
 
 <?php
 
+
 $servername = "localhost";
 $username = "root";
 $describe = "";
@@ -94,19 +95,10 @@ echo '
 
 }
 
-// $sql2 = "SELECT * FROM `studentlogin` WHERE sno='$userna' ";
-// $result2 = mysqli_query($conn, $sql2);
-// while($row=mysqli_fetch_assoc($result2)){
-//     $student_no=$row{'username'};
-//     $name=$row{'first_name'} ;
-// echo '';
-
-// }
 
 
 session_start();
-if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']=true){
-  
+if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']=true){ 
   
 
 
@@ -125,7 +117,7 @@ if($method=='POST'){
    
 $sql3="INSERT INTO `teachers_rating` (`sno`, `student_number`, `teacher`, `rate1`, `rate2`, `rate3`, `rate4`, `rate5`, `comment`, `time`) VALUES (NULL, '".$_SESSION['naam']."', ' $name', '$rate1', '$rate2', '$rate3', '$rate4', '$rate5', '$comment', current_timestamp());";
 $result3 = mysqli_query($conn , $sql3);
-
+header("location:subjects.php");
 }
 else{
 echo ""; 

@@ -138,11 +138,12 @@ else{
        $showlogin = true;
 	$row = mysqli_fetch_assoc($result);
 	$ids=$row{"id"}; 
-       session_start();
+	   session_start();
+	   $_SESSION['section']=$sec; 
        $_SESSION['loggedin']=true;
        $_SESSION['naam']=$userna;
 	   $_SESSION['sno']=$row['sno'];
-	   header("location:subjects.php?subjects=$sec");
+	   header("location:subjects.php");
    }
 
 else{
