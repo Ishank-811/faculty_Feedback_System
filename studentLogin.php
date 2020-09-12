@@ -8,8 +8,7 @@
 <link href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 <style>
     body {
 		font-family: 'Varela Round', sans-serif;
@@ -30,12 +29,14 @@
         margin-top: 100px;
         margin-left:700px;
 	}
-	.modal-login .modal-content {
+	.modal-login .modal-content 
+	{
 		padding: 20px;
 		border-radius: 5px;
 		border: none;
 	}
-	.modal-login .modal-header {
+	.modal-login .modal-header 
+	{
 		border-bottom: none;
 		position: relative;
 		justify-content: center;
@@ -44,43 +45,53 @@
 		text-align: center;
 		font-size: 26px;
 	}
-	.modal-login  .form-group {
+	.modal-login  .form-group 
+	{
 		position: relative;
 	}
-	.modal-login i {
+	.modal-login i 
+	{
 		position: absolute;
 		left: 13px;
 		top: 11px;
 		font-size: 18px;
 	}
-	.modal-login .form-control {
+	.modal-login .form-control 
+	{
 		padding-left: 40px;
 	}
-	.modal-login .form-control:focus {
+	.modal-login .form-control:focus 
+	{
 		border-color: #00ce81;
 	}
-	.modal-login .form-control, .modal-login .btn {
+	.modal-login .form-control, .modal-login .btn 
+	{
 		min-height: 40px;
 		border-radius: 3px; 
 	}
-	.modal-login .hint-text {
+	.modal-login .hint-text 
+	{
 		text-align: center;
 		padding-top: 10px;
 	}
-	.modal-login .close {
+	.modal-login .close 
+	{
         position: absolute;
 		top: -5px;
 		right: -5px;
 	}
-	.modal-login .btn {
+	.modal-login .btn 
+	{
 		background: #00ce81;
 		border: none;
 		line-height: normal;
 	}
-	.modal-login .btn:hover, .modal-login .btn:focus {
+	.modal-login .btn:hover, .modal-login .btn:focus 
+	{
 		background: #00bf78;
 	}
-	.modal-login .modal-footer {
+	.modal-login .modal-footer 
+	{
 		background: #ecf0f1;
 		border-color: #dee4e7;
 		text-align: center;
@@ -89,7 +100,8 @@
 		font-size: 13px;
 		justify-content: center;
 	}
-	.modal-login .modal-footer a {
+	.modal-login .modal-footer a 
+	{
 		color: #999;
 	}
 	.trigger-btn {
@@ -106,6 +118,7 @@
 //include "conn.php";
 $showlogin=false; 
 $showError=false; 
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
   $userna = $_POST['username'];
   $sec= $_POST['section'];
@@ -130,7 +143,8 @@ else{
  // Sql query to be executed 
  
  
-    $sql = "SELECT * FROM  studentlogin where username='$userna' ";
+	$sql = "SELECT * FROM  studentlogin where username='$userna' and status=0 ";
+
    $result = mysqli_query($conn, $sql);
    $num = mysqli_num_rows($result);
  
@@ -147,31 +161,34 @@ else{
    }
 
 else{
-//   $showError = "Passwords do not match";
-  echo "password do not match"; 
+	$showError=true; 
+	$showError="invalid credentials"; 
+ 
 }
+
+
 
 }
 }
 
 ?>
 <?php
-//  if($showlogin){
-//   echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
-//     <strong>Success!</strong> You have been logged in 
-//     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-//     <span aria-hidden="true">×</span>
-//   </button>
-// </div>';
-// }
-// if($showError){
-//   echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
-//   <strong>Error!</strong>'.$showError.'
-//   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-//   <span aria-hidden="true">×</span>
-// </button>
-// </div>';
-// }
+ if($showlogin){
+  echo '<div class="alert alert-success " role="alert">
+    <strong>Success!</strong> You have been logged in 
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">×</span>
+  </button>
+</div>';
+}
+if($showError){
+  echo '<div class="alert alert-danger " role="alert">
+  <strong>Error! </strong>'.$showError.'
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+  <span aria-hidden="true">×</span>
+</button>
+</div>';
+}
 ?>
 
 
@@ -253,6 +270,8 @@ else{
 			
 		</div>
 	</div> 
-    
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -38,41 +38,20 @@ $sec=  $_SESSION['section'];
             margin-top: 50px;
 
         }
-        #button2
+
+        #logout
         {
             display: block;
-            margin: auto;
-            font-size: 50px;
-            border-radius: 50px;
+           position:absolute; 
+           top:10px; 
+           right:50px; 
+            font-size: 40px;
+            border-radius: 40px;
             font-family: cursive;
             margin-bottom: 10px;
-        }
-        #button3
-        {
-            display: block;
-            margin: auto;
-            font-size: 50px;
-            border-radius: 50px;
-            font-family: cursive;
-            margin-bottom: 10px;
-        }
-        #button4
-        {
-            display: block;
-            margin: auto;
-            font-size: 50px;
-            border-radius: 50px;
-            font-family: cursive;
-            margin-bottom: 10px;
-        }
-        #button5
-        {
-            display: block;
-            margin: auto;
-            font-size: 50px;
-            border-radius: 50px;
-            font-family: cursive;
-            margin-bottom: 10px;
+            background-color:red; 
+            color:white; 
+
         }
         #button1:hover
         {
@@ -80,30 +59,6 @@ $sec=  $_SESSION['section'];
             color: rgb(240, 239, 239);
             background-color:rgb(68, 67, 67);
             
-        }
-        #button2:hover
-        {
-            cursor: pointer;
-            color: rgb(240, 239, 239);
-            background-color:rgb(68, 67, 67);
-        }
-        #button3:hover
-        {
-            cursor: pointer;
-            color: rgb(240, 239, 239);
-            background-color:rgb(68, 67, 67);
-        }
-        #button4:hover
-        {
-            cursor: pointer;
-            color: rgb(240, 239, 239);
-            background-color:rgb(68, 67, 67);
-        }
-        #button5:hover
-        {
-            cursor: pointer;
-            color: rgb(240, 239, 239);
-            background-color:rgb(68, 67, 67);
         }
 
     </style>
@@ -151,6 +106,7 @@ echo '
 }
 
 ?>
+<button id="logout"><a href="logout.php" >logout</a></button>
 
 
 
