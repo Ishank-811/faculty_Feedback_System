@@ -54,11 +54,13 @@ if(isset($_POST["submit"]))
         if($numrows >0)
         {
             //session username 
+            session_start();
             $_SESSION["username"]= $username; 
-
+            $_SESSION['loggedin']=true;
 
             $error = "<div class='alert alert-success text-center' role='alert'>
             Login is Successfull.</div>";
+            header("location:faculty_page.php");
         }
         else
         {
