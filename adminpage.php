@@ -119,7 +119,7 @@ else{
 								<option value="Select">Select</option>
   
                                 <option value="CSE-1">CSE-1</option>  
-                                <option value="CSE-2">CSE-2</option>  
+                                <option value="6">CSE-2</option>  
                                  <option value="7">CSE-3</option>  
 								<option value="8">CS-1</option> 
 								<option value="9">CS-2</option> 
@@ -207,9 +207,7 @@ else
     $co=$row{'comment'};
     
     
-    //echo " '.$row{'sno'}.'  '.$row{'teacher'}.' '.$row{'rate1'}.' '.$row{'rate2'}.' 
-    //'.$row{'rate3'}.'   '.$row{'rate4'}.'  
-     //'.$row{'rate5'}.'   '.$row{'comment'}.' ";
+  
      echo "<tr>
      <th scope='row'>$sno</th>
     
@@ -224,18 +222,18 @@ else
      
    </tr> ";
    
-   
 
-    // echo "$sno $st $t $r1 $r2 $r3 $r4 $r5 $co";
-    //echo "<br>";
   }
 }
 ?>
 </tbody>
-<table>
+</table>
 
 
 </div>
+
+
+
     
 <div class="tb"> 
 
@@ -250,6 +248,7 @@ else
       <th scope="col">SECTION</th>
       <th scope="col">SUBJECT</th>
       <th scope="col">ID</th>
+      <th scope="col">ACTIONS</th>
       
     </tr>
   </thead>
@@ -276,11 +275,7 @@ else
     $section=$row{'section'};
     $subject=$row{'subjec'};
     $id=$row{'id'};
-    
-    
-    //echo " '.$row{'sno'}.'  '.$row{'teacher'}.' '.$row{'rate1'}.' '.$row{'rate2'}.' 
-    //'.$row{'rate3'}.'   '.$row{'rate4'}.'  
-     //'.$row{'rate5'}.'   '.$row{'comment'}.' ";
+
      echo "<tr>
      <th scope='row'>$sno</th>
     
@@ -294,16 +289,12 @@ else
      
      <td><a href='./del'>EDIT </a>  <a href='./edit'>DELETE</a></td>
    </tr> ";
-   
-   
 
-    // echo "$sno $st $t $r1 $r2 $r3 $r4 $r5 $co";
-    //echo "<br>";
   }
 }
 ?>
 </tbody>
-<table>
+</table>
 
 
 </div>
@@ -321,7 +312,7 @@ else
     $('#myTable').DataTable();
      } );
     </script>
-        <script>  
+      <script>  
     $(document).ready( function () {
     $('#mTable').DataTable();
      } );
