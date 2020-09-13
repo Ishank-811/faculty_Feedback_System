@@ -108,10 +108,5 @@ echo '
 ?>
 <button id="logout"><a href="logout.php" >logout</a></button>
 
-
-
-     
-  
-
 </body>
 </html>
