@@ -43,6 +43,7 @@ else{
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
     
     <title>Hello, ADMIN!</title>
+    
     <style>
     body{
       background-color:darkgrey;
@@ -63,6 +64,99 @@ else{
     </style>
   </head>
   <body>
+  <!-- Button Edit modal -->
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal">
+Edit Modal
+</button> -->
+
+<!-- Edit Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editModalLabel">Edit this </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="adminpage.php" method="POST">
+            <div class="form-group" >
+              <label for="first_name">TEACHER'S FIRST NAME</label>
+              <input type="text"  name="first_nameEdit" class="form-control" id="first_nameEdit" aria-describedby="first_name" placeholder="Enter first name">
+              
+            </div>
+            <div class="form-group">
+              <label for="last_name">TEACHER'S LAST NAME</label>
+              <input type="text" class="form-control" name="last_nameEdit" id="last_nameEdit"  aria-describedby="last_name" placeholder="Enter last name">
+            </div>
+            <div class="form-group">
+              <label for="email">Email address</label>
+              <input type="email"  name="emailEdit" class="form-control" id="emailEdit" aria-describedby="emailHelp" placeholder="Enter email">
+              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <div class="form-group">
+            <label>GENDER </label>
+                       <select id = "genderEdit" name="genderEdit">
+                         <option  name="genderEdit" value = "MALE">MALE</option>
+                         <option name="genderEdit"  value = "FEMALE">FEMALE</option>
+                        
+                       </select>
+            </div>
+            <div class="form-group">
+            SECTION :  
+                                      <select id = "sectionEdit" name="sectionEdit" required>  
+                                          <option value="Select">Select</option>
+            
+                                          <option value="5">CSE-1</option>  
+                                          <option value="6">CSE-2</option>  
+                                           <option value="7">CSE-3</option>  
+                                          <option value="8">CS-1</option> 
+                                          <option value="9">CS-2</option> 
+                                          <option value="10">CS-3</option>
+                                          <option value="11">CS/IT-1</option>
+                                          <option value="12">CS/IT-2</option>
+                                          <option value="13">CSIT-3</option>
+                                          <option value="1">IT-1</option>  
+                                          <option value="2">IT-2</option>  
+                                          <option value="3">IT-3</option>  
+                                          <option value="4">IT-4</option>  
+                                          <option value="14">ECE-1</option>
+                                          <option value="15">ECE-2</option>
+                                          <option value="16">ECE-3</option>
+                                          <option value="17">EEE-1</option>
+                                          <option value="18">EEE-2</option>
+                                          <option value="19">EEE-3</option>
+                                          <option value="20">ME-1</option>
+                                          <option value="21">ME-2</option>
+                                          <option value="22">ME-3</option>
+                                          <option value="23">CIVIL-1</option>
+                                          <option value="24">CIVIL-2</option>
+                                          <option value="25">CIVIL-3</option>
+          
+                                      </select>   
+            </div>
+            <div class="form-group">
+              <label for="subject">Subject</label>
+              <input type="text" name="subjecEdit" class="form-control" id="subjecEdit" placeholder="Enter the subject">
+            </div>
+            <div class="form-group">
+              <label for="id">ID</label>
+              <input type="number" name="idEdit"  class="form-control" id="idEdit" placeholder="Enter the id">
+            </div>
+          
+            
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
   
 
@@ -108,8 +202,8 @@ else{
   <div class="form-group">
   <label>GENDER </label>
              <select id = "GENDER" name="gender">
-               <option value = "MALE">MALE</option>
-               <option value = "FEMALE">FEMALE</option>
+               <option value = "1">MALE</option>
+               <option value = "2">FEMALE</option>
               
              </select>
   </div>
@@ -118,7 +212,7 @@ else{
                             <select name="section" required>  
 								<option value="Select">Select</option>
   
-                                <option value="CSE-1">CSE-1</option>  
+                                <option value="5">CSE-1</option>  
                                 <option value="6">CSE-2</option>  
                                  <option value="7">CSE-3</option>  
 								<option value="8">CS-1</option> 
@@ -164,7 +258,7 @@ else{
 
 
 
- <div class="ta"> 
+<div class="ta"> 
 
 <table class="table" id="myTable">
   <thead>
@@ -287,7 +381,7 @@ else
      <td>$subject</td>
      <td>$id</td>
      
-     <td><a href='./del'>EDIT </a>  <a href='./edit'>DELETE</a></td>
+     <td><button class='editing btn btn-sm btn-primary'  id=".$row['sno']. "  >Edit</button>  <a href='./edit'>DELETE</a></td>
    </tr> ";
 
   }
@@ -317,5 +411,32 @@ else
     $('#mTable').DataTable();
      } );
     </script>
+    <script>
+        edits=document.getElementsByClassName('editing');
+        Array.from(edits).forEach((element)=>
+        {
+            element.addEventListener("click",(e)=>
+            {
+                console.log("edit ");
+                tr=e.target.parentNode.parentNode;
+                firstname=tr.getElementsByTagName("td")[0].innerText;
+                lastname= tr.getElementsByTagName("td")[1].innerText;
+                email=tr.getElementsByTagName("td")[2].innerText;
+                gender=tr.getElementsByTagName("td")[3].innerText;
+                section=tr.getElementsByTagName("td")[4].innerText;
+                subject=tr.getElementsByTagName("td")[5].innerText;
+                console.log(firstname,lastname,email,gender,section,subject);
+                first_nameEdit.value=firstname;
+                last_nameEdit.value=lastname;
+                emailEdit.value=email;
+                genderEdit.value=gender;
+                sectionEdit.value=section;
+                subjecEdit.value=subject;
+                console.log(e.target.id)
+                $('#editModal').modal('toggle');
+
+            })
+        })
+        </script>
   </body>
 </html>
