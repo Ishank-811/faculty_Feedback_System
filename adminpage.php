@@ -1,31 +1,76 @@
 <?php
+$insert = false;
+$update = false;
+$delete = false;
+
+//connect to Database
 $servername = "localhost";
 $username = "root";
 $password = "";
 $database = "facultyfeedback"; 
 //Create a connection
 $conn = mysqli_connect($servername, $username, $password, $database);
+if (!$conn)
+{
+    die("Sorry we failed to connect: ". mysqli_connect_error());
+}
+if(isset($_GET['delete']))
+{
+    $sno = $_GET['delete'];
+    $delete = true;
+    $sql = "DELETE FROM `mock_data__1__1` WHERE `sno` = $sno";
+    $result = mysqli_query($conn,$sql);
+}
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
-  $first_name = $_POST["first_name"];
-  $last_name = $_POST["last_name"];
-  $email = $_POST["email"];
-  $gender = $_POST["gender"];
-  $section = $_POST["section"];
-  $subject = $_POST["subjec"];
-  $id = $_POST["id"];
+    if(isset( $_POST['snoEdit']))
+    {
+        // Update the record
+        $first_name = $_POST["first_nameEdit"];
+        $last_name = $_POST["last_nameEdit"];
+        $email = $_POST["emailEdit"];
+        $gender = $_POST["genderEdit"];
+        $section = $_POST["sectionEdit"];
+        $subject = $_POST["subjecEdit"];
+        $id = $_POST["idEdit"];
+        $sno = $_POST["snoEdit"];
 
-// Sql query to be executed
-$sql = "INSERT INTO `mock_data__1__1` (`first_name`, `last_name`,`email`,`gender`,`section`,`subjec`,`id`) VALUES ('$first_name', '$last_name','$email','$gender','$section','$subject','$id')";
-$result = mysqli_query($conn, $sql);
+        // Sql query to be executed
+        $sql = "UPDATE `mock_data__1__1` SET `first_name` = '$first_name' , `last_name` = '$last_name' , `email` = '$email' , `gender` = '$gender' , `section` = '$section' , `subjec` = '$subject' , `id` = '$id' WHERE  `mock_data__1__1`.`sno` = $sno";
+        $result = mysqli_query($conn, $sql);
+        if($result)
+        {
+            $update = true;
+        }
+        else
+        {
+            $update = false;
+        }
+    }
+    else
+    {
+        $first_name = $_POST["first_name"];
+        $last_name = $_POST["last_name"];
+        $email = $_POST["email"];
+        $gender = $_POST["gender"];
+        $section = $_POST["section"];
+        $subject = $_POST["subjec"];
+        $id = $_POST["id"];
 
- 
-if($result){ 
-    $insert = true;
-}
-else{
-    echo "The record was not inserted successfully because of this error ---> ". mysqli_error($conn);
-} 
+        // Sql query to be executed
+        $sql = "INSERT INTO `mock_data__1__1` (`first_name`, `last_name`,`email`,`gender`,`section`,`subjec`,`id`) VALUES ('$first_name', '$last_name','$email','$gender','$section','$subject','$id')";
+        $result = mysqli_query($conn, $sql);
+
+        
+        if($result)
+        { 
+            $insert = true;
+        }
+        else
+        {
+            echo "The record was not inserted successfully because of this error ---> ". mysqli_error($conn);
+        }
+    } 
 }
 
 ?>
@@ -45,7 +90,7 @@ else{
     <title>Hello, ADMIN!</title>
     
     <style>
-    body{
+     body{
       background-color:darkgrey;
       padding-left:50px;
       padding-right:50px;
@@ -54,11 +99,12 @@ else{
       text-align: center;
       padding-top:10px;
       text-decoration: underline;
+      padding-bottom:10px;
       }
       .container1 h3{
         text-align:center;
-        text-decoration-line: underline;
-  text-decoration-style: dotted;
+        text-decoration: underline;
+  
         
       }
     </style>
@@ -79,80 +125,82 @@ Edit Modal
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-        <form action="adminpage.php" method="POST">
-            <div class="form-group" >
-              <label for="first_name">TEACHER'S FIRST NAME</label>
-              <input type="text"  name="first_nameEdit" class="form-control" id="first_nameEdit" aria-describedby="first_name" placeholder="Enter first name">
-              
-            </div>
-            <div class="form-group">
-              <label for="last_name">TEACHER'S LAST NAME</label>
-              <input type="text" class="form-control" name="last_nameEdit" id="last_nameEdit"  aria-describedby="last_name" placeholder="Enter last name">
-            </div>
-            <div class="form-group">
-              <label for="email">Email address</label>
-              <input type="email"  name="emailEdit" class="form-control" id="emailEdit" aria-describedby="emailHelp" placeholder="Enter email">
-              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-            </div>
-            <div class="form-group">
-            <label>GENDER </label>
-                       <select id = "genderEdit" name="genderEdit">
-                         <option  name="genderEdit" value = "MALE">MALE</option>
-                         <option name="genderEdit"  value = "FEMALE">FEMALE</option>
-                        
-                       </select>
-            </div>
-            <div class="form-group">
-            SECTION :  
-                                      <select id = "sectionEdit" name="sectionEdit" required>  
-                                          <option value="Select">Select</option>
+    <form action="adminpage.php" method="POST">
+        <div class="modal-body">
             
-                                          <option value="5">CSE-1</option>  
-                                          <option value="6">CSE-2</option>  
-                                           <option value="7">CSE-3</option>  
-                                          <option value="8">CS-1</option> 
-                                          <option value="9">CS-2</option> 
-                                          <option value="10">CS-3</option>
-                                          <option value="11">CS/IT-1</option>
-                                          <option value="12">CS/IT-2</option>
-                                          <option value="13">CSIT-3</option>
-                                          <option value="1">IT-1</option>  
-                                          <option value="2">IT-2</option>  
-                                          <option value="3">IT-3</option>  
-                                          <option value="4">IT-4</option>  
-                                          <option value="14">ECE-1</option>
-                                          <option value="15">ECE-2</option>
-                                          <option value="16">ECE-3</option>
-                                          <option value="17">EEE-1</option>
-                                          <option value="18">EEE-2</option>
-                                          <option value="19">EEE-3</option>
-                                          <option value="20">ME-1</option>
-                                          <option value="21">ME-2</option>
-                                          <option value="22">ME-3</option>
-                                          <option value="23">CIVIL-1</option>
-                                          <option value="24">CIVIL-2</option>
-                                          <option value="25">CIVIL-3</option>
-          
-                                      </select>   
-            </div>
-            <div class="form-group">
-              <label for="subject">Subject</label>
-              <input type="text" name="subjecEdit" class="form-control" id="subjecEdit" placeholder="Enter the subject">
-            </div>
-            <div class="form-group">
-              <label for="id">ID</label>
-              <input type="number" name="idEdit"  class="form-control" id="idEdit" placeholder="Enter the id">
-            </div>
-          
+                <input type="hidden" name="snoEdit" id="snoEdit">
+                <div class="form-group" >
+                <label for="first_name">TEACHER'S FIRST NAME</label>
+                <input type="text"  name="first_nameEdit" class="form-control" id="first_nameEdit" aria-describedby="first_name" placeholder="Enter first name">
+                
+                </div>
+                <div class="form-group">
+                <label for="last_name">TEACHER'S LAST NAME</label>
+                <input type="text" class="form-control" name="last_nameEdit" id="last_nameEdit"  aria-describedby="last_name" placeholder="Enter last name">
+                </div>
+                <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email"  name="emailEdit" class="form-control" id="emailEdit" aria-describedby="emailHelp" placeholder="Enter email">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                </div>
+                <div class="form-group">
+                <label>GENDER </label>
+                        <select id = "genderEdit" name="genderEdit">
+                            <option  name="genderEdit" value = "MALE">MALE</option>
+                            <option name="genderEdit"  value = "FEMALE">FEMALE</option>
+                            
+                        </select>
+                </div>
+                <div class="form-group">
+                SECTION :  
+                                        <select id = "sectionEdit" name="sectionEdit" required>  
+                                            
+                
+                                            <option value="Select">Select</option>
+    
+                                            <option value="CSE-1">CSE-1</option>  
+                                    <option value="CSE-2">CSE-2</option>  
+                                    <option value="CSE-3">CSE-3</option>  
+                                    <option value="CS-1">CS-1</option> 
+                                    <option value="CS-2">CS-2</option> 
+                                    <option value="CS-3">CS-3</option>
+                                    <option value="CS/IT-1">CS/IT-1</option>
+                                    <option value="CS/IT-2">CS/IT-2</option>
+                                    <option value="CSIT-3">CSIT-3</option>
+                                    <option value="IT-1">IT-1</option>  
+                                    <option value="IT-2">IT-2</option>  
+                                    <option value="IT-3">IT-3</option>  
+                                    <option value="IT-4">IT-4</option>  
+                                    <option value="ECE-1">ECE-1</option>
+                                    <option value="ECE-2">ECE-2</option>
+                                    <option value="ECE-3">ECE-3</option>
+                                    <option value="EEE-1">EEE-1</option>
+                                    <option value="EEE-2">EEE-2</option>
+                                    <option value="EEE-3">EEE-3</option>
+                                    <option value="ME-1">ME-1</option>
+                                    <option value="ME-2">ME-2</option>
+                                    <option value="ME-3">ME-3</option>
+                                    <option value="CIVIL-1">CIVIL-1</option>
+                                    <option value="CIVIL-2">CIVIL-2</option>
+                                    <option value="CIVIL-3">CIVIL-3</option>
             
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+                                        </select>   
+                </div>
+                <div class="form-group">
+                <label for="subject">Subject</label>
+                <input type="text" name="subjecEdit" class="form-control" id="subjecEdit" placeholder="Enter the subject">
+                </div>
+                <div class="form-group">
+                <label for="id">ID</label>
+                <input type="number" name="idEdit"  class="form-control" id="idEdit" placeholder="Enter the id">
+                </div>
+            
+        </div>
+        <div class="modal-footer d-block mr-auto">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Save changes</button>
+        </div>
+    </form>
     </div>
   </div>
 </div>
@@ -174,11 +222,36 @@ Edit Modal
       
          
 </nav>
-      <div class="container">
-  <h2>FEEDBACK INFO <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-11.5.5a.5.5 0 0 1 0-1h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5z"/>
-          </svg></h2>
-</div>
+<?php
+if($insert)
+{
+    echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+    <strong>Success !</strong> Inserted Successfully !
+    <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+      <span aria-hidden='true'>&times;</span>
+    </button>
+  </div>";
+}
+if($delete)
+{
+    echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+    <strong>Success !</strong> Deleted Successfully !
+    <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+      <span aria-hidden='true'>&times;</span>
+    </button>
+  </div>";
+}
+if($update)
+{
+    echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+    <strong>Success !</strong> Updated Successfully !
+    <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+      <span aria-hidden='true'>&times;</span>
+    </button>
+  </div>";
+}
+?>
+    
 <br>
 <div class="container1">
   <h3>ADD A FACULTY<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -188,7 +261,7 @@ Edit Modal
   <div class="form-group" >
     <label for="first_name">TEACHER'S FIRST NAME</label>
     <input type="text"  name="first_name" class="form-control" id="first_name" aria-describedby="first_name" placeholder="Enter first name">
-    
+
   </div>
   <div class="form-group">
     <label for="last_name">TEACHER'S LAST NAME</label>
@@ -212,31 +285,31 @@ Edit Modal
                             <select name="section" required>  
 								<option value="Select">Select</option>
   
-                                <option value="5">CSE-1</option>  
-                                <option value="6">CSE-2</option>  
-                                 <option value="7">CSE-3</option>  
-								<option value="8">CS-1</option> 
-								<option value="9">CS-2</option> 
-								<option value="10">CS-3</option>
-								<option value="11">CS/IT-1</option>
-								<option value="12">CS/IT-2</option>
-								<option value="13">CSIT-3</option>
-								<option value="1">IT-1</option>  
-								<option value="2">IT-2</option>  
-								<option value="3">IT-3</option>  
-								<option value="4">IT-4</option>  
-								<option value="14">ECE-1</option>
-								<option value="15">ECE-2</option>
-								<option value="16">ECE-3</option>
-								<option value="17">EEE-1</option>
-								<option value="18">EEE-2</option>
-								<option value="19">EEE-3</option>
-								<option value="20">ME-1</option>
-								<option value="21">ME-2</option>
-								<option value="22">ME-3</option>
-								<option value="23">CIVIL-1</option>
-								<option value="24">CIVIL-2</option>
-								<option value="25">CIVIL-3</option>
+                                <option value="CSE-1">CSE-1</option>  
+                                <option value="CSE-2">CSE-2</option>  
+                                 <option value="CSE-3">CSE-3</option>  
+								<option value="CS-1">CS-1</option> 
+								<option value="CS-2">CS-2</option> 
+								<option value="CS-3">CS-3</option>
+								<option value="CS/IT-1">CS/IT-1</option>
+								<option value="CS/IT-2">CS/IT-2</option>
+								<option value="CSIT-3">CSIT-3</option>
+								<option value="IT-1">IT-1</option>  
+								<option value="IT-2">IT-2</option>  
+								<option value="IT-3">IT-3</option>  
+								<option value="IT-4">IT-4</option>  
+								<option value="ECE-1">ECE-1</option>
+								<option value="ECE-2">ECE-2</option>
+								<option value="ECE-3">ECE-3</option>
+								<option value="EEE-1">EEE-1</option>
+								<option value="EEE-2">EEE-2</option>
+								<option value="EEE-3">EEE-3</option>
+								<option value="ME-1">ME-1</option>
+								<option value="ME-2">ME-2</option>
+								<option value="ME-3">ME-3</option>
+								<option value="CIVIL-1">CIVIL-1</option>
+								<option value="CIVIL-2">CIVIL-2</option>
+								<option value="CIVIL-3">CIVIL-3</option>
 
                             </select>   
   </div>
@@ -255,6 +328,15 @@ Edit Modal
 </div>
 <br>
 <br>
+
+<hr>
+
+<div class="container">
+  <h2>FACULTY FEEDBACK <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-11.5.5a.5.5 0 0 1 0-1h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5z"/>
+          </svg></h2>
+</div>
+
 
 
 
@@ -326,7 +408,13 @@ else
 
 </div>
 
+<hr>
 
+<div class="container">
+  <h2>FACULTY DETAILS <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-11.5.5a.5.5 0 0 1 0-1h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5z"/>
+          </svg></h2>
+</div>
 
     
 <div class="tb"> 
@@ -381,7 +469,7 @@ else
      <td>$subject</td>
      <td>$id</td>
      
-     <td><button class='editing btn btn-sm btn-primary'  id=".$row['sno']. "  >Edit</button>  <a href='./edit'>DELETE</a></td>
+     <td><button class='editing btn btn-sm btn-primary'  id=".$row['sno']. "  >Edit</button>  <button class='delete btn btn-sm btn-primary'  id=d".$row['sno']. "  >Delete</button></td>
    </tr> ";
 
   }
@@ -432,8 +520,31 @@ else
                 genderEdit.value=gender;
                 sectionEdit.value=section;
                 subjecEdit.value=subject;
+               
+                snoEdit.value = e.target.id;
                 console.log(e.target.id)
                 $('#editModal').modal('toggle');
+
+            })
+        })
+
+        deletes=document.getElementsByClassName('delete');
+        Array.from(deletes).forEach((element)=>
+        {
+            element.addEventListener("click",(e)=>
+            {
+                console.log("edit ");
+                sno = e.target.id.substr(1,);
+                if(confirm("Are You Sure You Want To Delete?"))
+                {
+                    console.log("Yes");
+                    window.location = `adminpage.php?delete=${sno}`;
+                }
+                else
+                {
+                    console.log("No");
+                }
+                
 
             })
         })
