@@ -92,9 +92,11 @@ else{
       $num = mysqli_num_rows($result);
     
       $sno=0;
-
+        
+      $totalsum=0; 
       while($row=mysqli_fetch_assoc($result))
       {
+         
          $sno=$sno+1;
          
          $comments = $row{'comment'}; 
@@ -103,9 +105,12 @@ else{
          $r3=$row{'rate3'};
          $r4=$row{'rate4'};
          $r5=$row{'rate5'};
+        $sum = $r1+$r2+$r3+$r4+$r5; 
+        $totalsum=  $totalsum+$sum; 
+
 
         echo "<tr>
-   
+     
     
   
      <td>$r1</td>
@@ -119,6 +124,10 @@ else{
       
      
       }
+      echo "$totalsum";
+      
+      $sql2="UPDATE `teachers_rating` SET `sum` = '$totalsum' WHERE `teachers_rating`.`teacher` =  ".$_SESSION['username']."";
+      $result = mysqli_query($conn, $sql);
     }
     else {
       echo "wrong connection"; 

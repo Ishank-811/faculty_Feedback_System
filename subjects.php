@@ -108,8 +108,19 @@ echo '
 ?>
 <button id="logout"><a href="logout.php" >logout</a></button>
 
+<script type="text/javascript" src="./jquery-3.5.1.min.js"></script>
+<script type="text/javascript" src="./main.js"></script>
+<script>
+$(document).ready(function (){
 
 
+$('#button1').click(function(){
+$('#button1').css({display:'none'});
+console.log("graphic show"); 
+}); 
+}); 
+
+</script>
      
   
 

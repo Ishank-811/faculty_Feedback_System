@@ -114,8 +114,9 @@ if($method=='POST'){
   $rate5= $_POST['rate5'];
    $comment= $_POST['comment'];
    
-   
-$sql3="INSERT INTO `teachers_rating` (`sno`, `student_number`, `teacher`, `rate1`, `rate2`, `rate3`, `rate4`, `rate5`, `comment`, `time`) VALUES (NULL, '".$_SESSION['naam']."', ' $name', '$rate1', '$rate2', '$rate3', '$rate4', '$rate5', '$comment', current_timestamp());";
+   $sum = $rate1+$rate2+$rate3+$rate4+$rate5; 
+   $totalsum=  $totalsum+$sum;  
+$sql3="INSERT INTO `teachers_rating` (`sno`, `student_number`, `teacher`, `rate1`, `rate2`, `rate3`, `rate4`, `rate5`, `comment`,`time`, `rating` )  VALUES (NULL, '".$_SESSION['naam']."', ' $name', '$rate1', '$rate2', '$rate3', '$rate4', '$rate5', '$comment', current_timestamp(), '$totalsum');";
 $result3 = mysqli_query($conn , $sql3);
 header("location:subjects.php");
 }
