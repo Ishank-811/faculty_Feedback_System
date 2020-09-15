@@ -22,6 +22,20 @@
       padding-left:50px;
       padding-right:50px;
     }
+    #logout
+    {
+      display: block;
+      position:absolute; 
+      top:10px; 
+      right:50px; 
+      font-size: 20px;
+      border-radius: 40px;
+      font-family: cursive;
+      margin-bottom: 20px;
+      background-color:black; 
+      color:cyan; 
+
+    }
   
     </style>
   </head>
@@ -137,5 +151,8 @@ else{
     $('#myTable').DataTable();
      } );
     </script>
+    
+    <button id="logout"><a href="logout.php" >logout</a></button>
+
     </body>
     </html>
