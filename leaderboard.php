@@ -23,9 +23,9 @@
         <tr>
           
         
-        <th scope="col">TEACHERS</th>
+        <th scope="col">RATINGS</th>
 
-          <th scope="col">Ratings</th>
+          <th scope="col">TEACHERS</th>
          
         </tr>
       </thead>
@@ -64,8 +64,7 @@
             
            }
            $rating= $rating/5; 
-          //  echo $t;
-          //  echo $rating ; 
+       
           
            echo "<br>";
         
