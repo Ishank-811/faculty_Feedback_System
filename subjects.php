@@ -104,7 +104,7 @@ echo "$sub";
     $sql2="SELECT * FROM `it_branch` WHERE student_no= $stu_no and subjec='$sub' and status=0 ";
     $result2 = mysqli_query($conn, $sql2); 
     $num2 = mysqli_num_rows($result2);
-    echo "$num2"; 
+  
 
     if($num2==1){
     $sno=$row{'sno'}; 
