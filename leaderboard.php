@@ -3,9 +3,37 @@
     <title>LEADERBOARD</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+    <style>
+       body{
+        background: rgb(2,0,36);
+        background: linear-gradient(90deg, rgba(2,0,36,1) 9%, rgba(0,212,255,1) 100%);
+      padding-left:50px;
+      padding-right:50px;
+    }
+.n{
+            text-align:center;
+              background-color:black;
+        }
+        .n h4{
+          color:white;
+        }
+        #myTable{
+          background-color:white;
+        }
+    </style>
     </head>
     <body>
-        <h1>LEADERBOARD</h1>
+        <nav class="n">
+  <a class="navbar-brand" > <h4>LEADERBOARD <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-bullseye" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+          <path fill-rule="evenodd" d="M8 13A5 5 0 1 0 8 3a5 5 0 0 0 0 10zm0 1A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"/>
+          <path fill-rule="evenodd" d="M8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/>
+          <path d="M9.5 8a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+        </svg></h4></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+</nav>
     </body>
 
   
@@ -23,9 +51,10 @@
         <tr>
           
         
-        <th scope="col">RATINGS</th>
-
+        
           <th scope="col">TEACHERS</th>
+          <th scope="col">RATINGS</th>
+
          
         </tr>
       </thead>
@@ -71,9 +100,10 @@
            echo "<tr>
          
         
-           <td>$rating</td>
+          
           
            <td>$t</td>
+           <td>$rating</td>
          
          </tr> ";
     
@@ -97,3 +127,4 @@
          } );
         </script>
 </html>
+
