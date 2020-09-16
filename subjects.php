@@ -93,14 +93,14 @@ $database = "facultyfeedback";
 $conn = mysqli_connect($servername, $username, $describe, $database);
 
  
-  $sql="SELECT * FROM `mock_data__1__1` WHERE id= $sec";
+  $sql="SELECT * FROM `mock_data__1__1` WHERE id=$sec";
   $result = mysqli_query($conn, $sql);
 
     
 //  $num = mysqli_num_rows($result);
 while($row=mysqli_fetch_assoc($result)){
     $sub=$row{'subjec'}; 
-echo "$sub"; 
+//echo "$sub"; 
     $sql2="SELECT * FROM `it_branch` WHERE student_no= $stu_no and subjec='$sub' and status=0 ";
     $result2 = mysqli_query($conn, $sql2); 
     $num2 = mysqli_num_rows($result2);

@@ -57,7 +57,7 @@ if(isset($_POST["submit"]))
             //session username 
             $_SESSION["username"]= $username; 
 
-            header("location:adminpage.php");
+            header("location:adminpage.html");
             $error = "<div class='alert alert-success text-center' role='alert'>
             Login is Successfull.</div>";
         }

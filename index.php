@@ -104,7 +104,7 @@ session_start();
     $sec=  $_SESSION['section']; 
   $sub = $_GET['subjec']; 
    
-  echo "<h1>welcome $sub </h1>"; 
+ // echo "<h1>welcome $sub </h1>"; 
 
 $method= $_SERVER['REQUEST_METHOD'];
 $sql4="UPDATE `it_branch` SET `status` = '1' WHERE `it_branch`.`student_no` = '$stu_no' and `it_branch`.`subjec` ='$sub' ";
