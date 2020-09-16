@@ -98,14 +98,19 @@ echo '
 
 
 session_start();
-if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']=true){ 
-  
 
-
-
+ if(isset($_SESSION['loggedin']) && $_SESSION['loggedin']=true){ 
+     $stu_no=$_SESSION['naam'];
+    $sec=  $_SESSION['section']; 
+  $sub = $_GET['subjec']; 
+   
+  echo "<h1>welcome $sub </h1>"; 
 
 $method= $_SERVER['REQUEST_METHOD'];
+$sql4="UPDATE `it_branch` SET `status` = '1' WHERE `it_branch`.`student_no` = '$stu_no' and `it_branch`.`subjec` ='$sub' ";
+$result4 = mysqli_query($conn, $sql4);
 
+ 
 if($method=='POST'){
   $rate1= $_POST['rate1'];
   $rate2= $_POST['rate2'];
@@ -118,12 +123,15 @@ if($method=='POST'){
    $totalsum=  $totalsum+$sum;  
 $sql3="INSERT INTO `teachers_rating` (`sno`, `student_number`, `teacher`, `rate1`, `rate2`, `rate3`, `rate4`, `rate5`, `comment`,`time`, `rating` )  VALUES (NULL, '".$_SESSION['naam']."', ' $name', '$rate1', '$rate2', '$rate3', '$rate4', '$rate5', '$comment', current_timestamp(), '$totalsum');";
 $result3 = mysqli_query($conn , $sql3);
+
+
 header("location:subjects.php");
 }
 else{
 echo ""; 
 }
-}
+ }
+
 
 ?>
 
