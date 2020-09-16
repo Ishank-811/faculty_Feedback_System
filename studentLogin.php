@@ -12,12 +12,12 @@
 <style>
     body {
 		font-family: 'Varela Round', sans-serif;
-        background-image:url(img/akgec.png);
+        background-image:url(img/akgec.png) ;
 		background-repeat: none;
-		background-position: center;
-		background-size:cover;
-		background-origin: content-box;
-		background-attachment: fixed;
+    background-position: center;
+    background-size:cover;
+	background-origin: content-box;
+    background-attachment: fixed;
 	
 	
 	}

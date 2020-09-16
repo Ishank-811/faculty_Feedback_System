@@ -11,10 +11,7 @@ session_start();
 
 $sql="UPDATE `studentlogin` SET `status` = '1' WHERE `studentlogin`.`username` = ".$_SESSION['naam']."";
 $result = mysqli_query($conn, $sql);
-
-session_start();
 session_unset();
 session_destroy();
 header("location:start.html");
-exit;
 ?>

@@ -22,20 +22,6 @@
       padding-left:50px;
       padding-right:50px;
     }
-    #logout
-    {
-      display: block;
-      position:absolute; 
-      top:10px; 
-      right:50px; 
-      font-size: 20px;
-      border-radius: 40px;
-      font-family: cursive;
-      margin-bottom: 20px;
-      background-color:black; 
-      color:cyan; 
-
-    }
   
     </style>
   </head>
@@ -106,9 +92,11 @@ else{
       $num = mysqli_num_rows($result);
     
       $sno=0;
-
+        
+      $totalsum=0; 
       while($row=mysqli_fetch_assoc($result))
       {
+         
          $sno=$sno+1;
          
          $comments = $row{'comment'}; 
@@ -117,9 +105,12 @@ else{
          $r3=$row{'rate3'};
          $r4=$row{'rate4'};
          $r5=$row{'rate5'};
+        $sum = $r1+$r2+$r3+$r4+$r5; 
+        $totalsum=  $totalsum+$sum; 
+
 
         echo "<tr>
-   
+     
     
   
      <td>$r1</td>
@@ -133,6 +124,10 @@ else{
       
      
       }
+      echo "$totalsum";
+      
+      $sql2="UPDATE `teachers_rating` SET `sum` = '$totalsum' WHERE `teachers_rating`.`teacher` =  ".$_SESSION['username']."";
+      $result = mysqli_query($conn, $sql);
     }
     else {
       echo "wrong connection"; 
@@ -151,8 +146,5 @@ else{
     $('#myTable').DataTable();
      } );
     </script>
-    
-    <button id="logout"><a href="logout.php" >logout</a></button>
-
     </body>
     </html>
