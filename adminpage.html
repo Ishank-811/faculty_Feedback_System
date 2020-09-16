@@ -1,0 +1,172 @@
+
+
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital@1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Merriweather:ital@1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Lobster&family=Merriweather:ital@1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Cormorant+Garamond:wght@700&family=Lobster&family=Merriweather:ital@1&display=swap" rel="stylesheet">
+    <title>Hello, ADMIN!</title>
+    
+    <style>
+     body{
+        background: rgb(2,0,36);
+        background: linear-gradient(90deg, rgba(2,0,36,1) 9%, rgba(0,212,255,1) 100%);
+      padding-left:50px;
+      padding-right:50px;
+    }
+    .container{
+      text-align: center;
+      padding-top:10px;
+      text-decoration: underline;
+      padding-bottom:10px;
+      }
+      .container1 h3{
+        text-align:center;
+        text-decoration: underline;
+        color:white;
+        /*font-family: 'Lobster', cursive; */
+        /*font-family: 'Lobster', cursive;*/
+        font-family: 'Abril Fatface', cursive;
+        
+      }
+      .form-group{
+          color:white;
+          font-family: 'Cormorant Garamond', serif;
+         
+      }
+     
+    </style>
+  </head>
+  <body>
+ 
+
+ 
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">ADMINISTRATION <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-award-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path d="M8 0l1.669.864 1.858.282.842 1.68 1.337 1.32L13.4 6l.306 1.854-1.337 1.32-.842 1.68-1.858.282L8 12l-1.669-.864-1.858-.282-.842-1.68-1.337-1.32L2.6 6l-.306-1.854 1.337-1.32.842-1.68L6.331.864 8 0z"/>
+  <path d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1 4 11.794z"/>
+</svg></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="facultyfeed.php"> FEEDBACK INFO <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-11.5.5a.5.5 0 0 1 0-1h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5z"/>
+</svg><span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="facultyd.php">FACULTY INFO AND EDIT OPTIONS <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-square-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm2.5 8.5a.5.5 0 0 1 0-1h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5z"/>
+</svg> </a>
+      </li>
+      
+    </ul>
+  </div>
+</nav>
+
+<br>
+<div class="container1">
+  <h3>ADD A FACULTY <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right-circle-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-11.5.5a.5.5 0 0 1 0-1h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5z"/>
+          </svg></h3>
+          <br>
+          <br>
+         
+          <form action="facultyd.php" method="POST">
+  <div class="form-group"  >
+    <label for="first_name">TEACHER'S FIRST NAME</label>
+    <input type="text"  name="first_name" class="form-control" id="first_name" aria-describedby="first_name" placeholder="Enter first name" required>
+
+  </div>
+  <div class="form-group">
+    <label for="last_name">TEACHER'S LAST NAME</label>
+    <input type="text" class="form-control" name="last_name" id="last_name"  aria-describedby="last_name" placeholder="Enter last name" required>
+  </div>
+  <div class="form-group">
+    <label for="email">Email address</label>
+    <input type="email"  name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" required>
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+  </div>
+  <div class="form-group">
+  <label>GENDER </label>
+             <select id = "GENDER" name="gender" required >
+               <option value = "1">MALE</option>
+               <option value = "2">FEMALE</option>
+              
+             </select>
+  </div>
+  <div class="form-group">
+  SECTION :  
+                            <select name="section" required>  
+								<option value="Select">Select</option>
+  
+                                <option value="CSE-1">CSE-1</option>  
+                                <option value="CSE-2">CSE-2</option>  
+                                 <option value="CSE-3">CSE-3</option>  
+								<option value="CS-1">CS-1</option> 
+								<option value="CS-2">CS-2</option> 
+								<option value="CS-3">CS-3</option>
+								<option value="CS/IT-1">CS/IT-1</option>
+								<option value="CS/IT-2">CS/IT-2</option>
+								<option value="CSIT-3">CSIT-3</option>
+								<option value="IT-1">IT-1</option>  
+								<option value="IT-2">IT-2</option>  
+								<option value="IT-3">IT-3</option>  
+								<option value="IT-4">IT-4</option>  
+								<option value="ECE-1">ECE-1</option>
+								<option value="ECE-2">ECE-2</option>
+								<option value="ECE-3">ECE-3</option>
+								<option value="EEE-1">EEE-1</option>
+								<option value="EEE-2">EEE-2</option>
+								<option value="EEE-3">EEE-3</option>
+								<option value="ME-1">ME-1</option>
+								<option value="ME-2">ME-2</option>
+								<option value="ME-3">ME-3</option>
+								<option value="CIVIL-1">CIVIL-1</option>
+								<option value="CIVIL-2">CIVIL-2</option>
+								<option value="CIVIL-3">CIVIL-3</option>
+
+                            </select>   
+  </div>
+  <div class="form-group">
+    <label for="subject">Subject</label>
+    <input type="text" name="subjec" class="form-control" id="subjec" placeholder="Enter the subject" required>
+  </div>
+  <div class="form-group">
+    <label for="id">ID</label>
+    <input type="number" name="id"  class="form-control" id="id" placeholder="Enter the id" required>
+  </div>
+
+  
+  <button type="submit" class="btn btn-primary">Submit</button>
+
+</form>
+</div>
+<br>
+<br>
+
+<hr>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>
