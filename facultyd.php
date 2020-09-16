@@ -95,24 +95,18 @@ background: linear-gradient(90deg, rgba(58,52,157,1) 9%, rgba(0,212,255,1) 100%)
       padding-left:50px;
       padding-right:50px;
     }
-    .container{
-      text-align: center;
-      padding-top:10px;
-      text-decoration: underline;
-      padding-bottom:10px;
-      }
-      .container1 h3{
-        text-align:center;
-        text-decoration: underline;
-  
-        
-      }
+    
+      
       .n{
             text-align:center;
             background-color:black;
-            color:yellow;
+           
            
           
+        }
+        .n h4{
+          color:white;
+          text-decoration:underline;
         }
         .table{
           background-color:darkgrey!important;
@@ -121,10 +115,10 @@ background: linear-gradient(90deg, rgba(58,52,157,1) 9%, rgba(0,212,255,1) 100%)
   </head>
   <body>
   <nav class="n">
-  <a class="navbar-brand" href="facultyfeed.php">FEEDBACK INFO <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-award-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <a class="navbar-brand" href="facultyfeed.php"><h4>FEEDBACK INFO<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-award-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
   <path d="M8 0l1.669.864 1.858.282.842 1.68 1.337 1.32L13.4 6l.306 1.854-1.337 1.32-.842 1.68-1.858.282L8 12l-1.669-.864-1.858-.282-.842-1.68-1.337-1.32L2.6 6l-.306-1.854 1.337-1.32.842-1.68L6.331.864 8 0z"/>
   <path d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1 4 11.794z"/>
-</svg></a>
+</svg> <h4></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
