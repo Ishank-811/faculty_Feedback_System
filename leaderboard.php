@@ -4,21 +4,27 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
     <style>
-       body{
-        background: rgb(2,0,36);
-        background: linear-gradient(90deg, rgba(2,0,36,1) 9%, rgba(0,212,255,1) 100%);
-      padding-left:50px;
-      padding-right:50px;
-    }
-.n{
+       body
+        {
+            background: rgb(2,0,36);
+            background: linear-gradient(90deg, rgba(2,0,36,1) 9%, rgba(0,212,255,1) 100%);
+            padding-left:50px;
+            padding-right:50px;
+        }
+        .n
+        {
             text-align:center;
-              background-color:black;
+            background-color:black;
         }
         .n h4{
           color:white;
         }
         #myTable{
           background-color:white;
+        }
+        .dataTables_info
+        {
+            color:cyan;
         }
     </style>
     </head>
@@ -30,6 +36,8 @@
           <path fill-rule="evenodd" d="M8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/>
           <path d="M9.5 8a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
         </svg></h4></a>
+        &nbsp;&nbsp; &nbsp;  &nbsp;
+        <a class="navbar-brand" href="logout.php"><h4>Logout <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-door-open-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg"> <path fill-rule="evenodd" d="M1.5 15a.5.5 0 0 0 0 1h13a.5.5 0 0 0 0-1H13V2.5A1.5 1.5 0 0 0 11.5 1H11V.5a.5.5 0 0 0-.57-.495l-7 1A.5.5 0 0 0 3 1.5V15H1.5zM11 2v13h1V2.5a.5.5 0 0 0-.5-.5H11zm-2.5 8c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z"/> </svg></h4></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -49,13 +57,8 @@
     <table class="table" id="myTable">
       <thead>
         <tr>
-          
-        
-        
-          <th scope="col">TEACHERS</th>
           <th scope="col">RATINGS</th>
-
-         
+          <th scope="col">TEACHERS</th> 
         </tr>
       </thead>
     
@@ -95,15 +98,15 @@
            $rating= $rating/5; 
        
           
-           echo "<br>";
+        //    echo "<br>";
         
            echo "<tr>
          
         
           
           
-           <td>$t</td>
            <td>$rating</td>
+           <td>$t</td>
          
          </tr> ";
     
@@ -127,4 +130,3 @@
          } );
         </script>
 </html>
-

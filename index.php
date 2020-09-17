@@ -64,6 +64,12 @@
             margin-left: 92px;
             margin-top: 8px;
         }
+        .btn{
+            height:80px!important;
+            background-color:red!important;
+            display:flex;
+            font-size:40px;  
+        }
     </style>
 </head>
 <body>
@@ -107,7 +113,7 @@ session_start();
  // echo "<h1>welcome $sub </h1>"; 
 
 $method= $_SERVER['REQUEST_METHOD'];
-$sql4="UPDATE `it_branch` SET `status` = '1' WHERE `it_branch`.`student_no` = '$stu_no' and `it_branch`.`subjec` ='$sub' ";
+$sql4="UPDATE `branch_1` SET `status` = '1' WHERE `branch_1`.`student_no` = '$stu_no' and `branch_1`.`subjec` ='$sub' ";
 $result4 = mysqli_query($conn, $sql4);
 
  
@@ -190,7 +196,7 @@ echo "";
         </div>
         <textarea name="comment" id="comments" cols="90" rows="9" placeholder="Add Comments"></textarea>
 
-        <button type="submit" class="btn btn-primary">Add</button>
+        <button type="submit" class="btn btn-primary">SUBMIT</button>
     </form>
     '; 
     ?>    
