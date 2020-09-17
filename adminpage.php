@@ -322,7 +322,7 @@ if($update)
     <input type="number" name="id"  class="form-control" id="id" placeholder="Enter the id">
   </div>
 
-  
+  <button id="logout"><a href="logout.php" >logout</a></button>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 </div>
@@ -874,7 +874,7 @@ else
 
 </div>
     
-
+  
       
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

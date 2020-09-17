@@ -106,7 +106,7 @@ session_start();
  // echo "<h1>welcome $sub </h1>"; 
 
 $method= $_SERVER['REQUEST_METHOD'];
-$sql4="UPDATE `it_branch` SET `status` = '1' WHERE `it_branch`.`student_no` = '$stu_no' and `it_branch`.`subjec` ='$sub' ";
+$sql4="UPDATE `branch_1` SET `status` = '1' WHERE `branch_1`.`student_no` = '$stu_no' and `branch_1`.`subjec` ='$sub' ";
 $result4 = mysqli_query($conn, $sql4);
 
  
