@@ -90,12 +90,13 @@
            $t= $row{'teacher'};
            $sql3 ="SELECT `rating` from `teachers_rating` where `teacher`='$t' ";   
            $result3 = mysqli_query($conn, $sql3);
+           $i = 0;
            while($rates=mysqli_fetch_assoc($result3)){
 
            $rating += $rates{'rating'}; 
-            
+           $i = $i + 1;
            }
-           $rating= $rating/5; 
+           $rating= $rating/$i; 
        
           
         //    echo "<br>";
